@@ -2,14 +2,22 @@ import React from "react";
 import Lottie from "lottie-react";
 import loginImg from "../../assets/LottieFiles/LoginLottie.json";
 import { FcGoogle } from "react-icons/fc";
+import useAuth from "../../hooks/useAuth";
+import { toast } from "react-toastify";
 
 const LogIn = () => {
+  const { sighnInUser } = useAuth();
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
     console.log({ email, password });
+    sighnInUser(email, password).then((user) => {
+      // console.log(user);
+      // console.log("LoginSuccefully");
+      toast.success("LogIn Successfully");
+    });
   };
   return (
     <div className="hero bg-base-200 min-h-screen">

@@ -14,13 +14,13 @@ const Banar = () => {
         <div className="flex-1 hidden md:block">
           <motion.img
             animate={{ y: [0, 80, 0] }}
-            transition={{ duration: 8, delay: 5, repeat: Infinity }}
+            transition={{ duration: 5, delay: 2, repeat: Infinity }}
             src="https://i.ibb.co/ds7RYwyD/close-up-happy-people-work.jpg"
             className="max-w-sm border-blue-400  shadow-2xl border-l-9 border-b-8 rounded-t-[40px] rounded-br-2xl"
           />
           <motion.img
             animate={{ x: [0, 80, 0] }}
-            transition={{ duration: 5, delay: 2, repeat: Infinity }}
+            transition={{ duration: 3, delay: 1, repeat: Infinity }}
             src="https://i.ibb.co/0RY0hpSc/cherrydeck-r-MILC1-PIw-M0-unsplash.jpg"
             className="max-w-sm border-blue-400  shadow-2xl border-l-9 border-b-8 rounded-t-[40px] rounded-br-2xl"
           />

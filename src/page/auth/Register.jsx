@@ -1,16 +1,37 @@
 import Lottie from "lottie-react";
-import React from "react";
 import registerImg from "../../assets/LottieFiles/RegisterLottie.json";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router";
-import { object } from "motion/react-client";
+import useAuth from "../../hooks/useAuth";
+import { toast } from "react-toastify";
 const Register = () => {
+  const { createAccount, updatedUser, setLogedInUser } = useAuth();
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
     const newUser = Object.fromEntries(formData.entries());
-    console.log(newUser);
+
+    const { name, password, email, photo } = newUser;
+    // console.log(name, email, rest);
+    createAccount(email, password)
+      .then((result) => {
+        console.log(result);
+        const user = result.user;
+        updatedUser({ displayName: name, photoURL: photo })
+          .then(() => {
+            console.log(user);
+            setLogedInUser({ ...user, displayName: name, photoURL: photo });
+          })
+          .catch((err) => {
+            console.log(err);
+            setLogedInUser(user);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    toast.success(`Account Create  SuccessFully `);
   };
   return (
     <div className="hero bg-base-200 min-h-screen">

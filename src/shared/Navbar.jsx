@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router";
+import { AuthContext } from "../provider/AuthProvider";
+import useAuth from "../hooks/useAuth";
+import { toast } from "react-toastify";
+import { div, img } from "motion/react-client";
 
 const Navbar = () => {
+  const { logedInUser, logOutUser } = useAuth();
+
+  const signOutUser = () => {
+    logOutUser().then(() => {
+      console.log("logOut done");
+      toast.success("user logOut successfully");
+    });
+  };
   const links = (
     <>
       <li>
@@ -45,12 +57,27 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end gap-2">
-        <Link className="btn" to="/auth/login">
-          Log In
-        </Link>
-        <Link className="btn" to="/auth/register">
-          Register
-        </Link>
+        {logedInUser ? (
+          <>
+            <div className="avatar">
+              <div className="ring-primary ring-offset-base-100 w-12 rounded-full ring-2 ring-offset-2">
+                <img className="w-12" src={logedInUser.photoURL} />
+              </div>
+            </div>
+            <button onClick={signOutUser} className="btn">
+              LogOut
+            </button>
+          </>
+        ) : (
+          <>
+            <Link className="btn" to="/auth/login">
+              Log In
+            </Link>
+            <Link className="btn" to="/auth/register">
+              Register
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );
