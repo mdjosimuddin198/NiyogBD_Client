@@ -5,7 +5,13 @@ const Banar = () => {
   return (
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col  lg:flex-row-reverse">
-        <div className="flex-1 ">
+        <div className="flex-1 md:hidden">
+          <img
+            src="https://i.ibb.co/ds7RYwyD/close-up-happy-people-work.jpg"
+            alt=""
+          />
+        </div>
+        <div className="flex-1 hidden md:block">
           <motion.img
             animate={{ y: [0, 80, 0] }}
             transition={{ duration: 8, delay: 5, repeat: Infinity }}
