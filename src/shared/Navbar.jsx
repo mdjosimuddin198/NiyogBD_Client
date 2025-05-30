@@ -16,8 +16,11 @@ const Navbar = () => {
   };
   const links = (
     <>
-      <li>
+      <li className="ml-3">
         <NavLink to="/">Home</NavLink>
+      </li>
+      <li className="ml-3">
+        {logedInUser && <NavLink to={"/add_job"}>Add Job</NavLink>}
       </li>
     </>
   );

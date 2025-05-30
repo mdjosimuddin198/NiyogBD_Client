@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "motion/react";
-import Service from "../components/Service";
+import Service from "./Service";
 
 const Banar = () => {
   return (
