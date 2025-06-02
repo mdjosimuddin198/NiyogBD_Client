@@ -5,6 +5,7 @@ import Banar from "../home/Banar";
 import LogIn from "../page/auth/LogIn";
 import Register from "../page/auth/Register";
 import AddJob from "../page/AddJob";
+import PryvetRoutes from "./PryvetRoutes";
 
 const router = createBrowserRouter([
   {
@@ -14,7 +15,14 @@ const router = createBrowserRouter([
       { index: true, Component: Banar },
       { path: "auth/login", Component: LogIn },
       { path: "auth/register", Component: Register },
-      { path: "add_job", Component: AddJob },
+      {
+        path: "add_job",
+        element: (
+          <PryvetRoutes>
+            <AddJob></AddJob>
+          </PryvetRoutes>
+        ),
+      },
     ],
   },
 ]);

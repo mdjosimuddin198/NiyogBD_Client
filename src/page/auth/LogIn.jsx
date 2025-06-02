@@ -4,8 +4,11 @@ import loginImg from "../../assets/LottieFiles/LoginLottie.json";
 import { FcGoogle } from "react-icons/fc";
 import useAuth from "../../hooks/useAuth";
 import { toast } from "react-toastify";
+import { useLocation, useNavigate } from "react-router";
 
 const LogIn = () => {
+  const location = useLocation();
+  const Navigate = useNavigate();
   const { sighnInUser } = useAuth();
   const handleLogin = (e) => {
     e.preventDefault();
@@ -16,6 +19,7 @@ const LogIn = () => {
     sighnInUser(email, password).then((user) => {
       // console.log(user);
       // console.log("LoginSuccefully");
+      Navigate(`${location.state ? location.state : "/"}`);
       toast.success("LogIn Successfully");
     });
   };

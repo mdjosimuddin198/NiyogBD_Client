@@ -1,5 +1,7 @@
 import React from "react";
 import useAuth from "../hooks/useAuth";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const AddJob = () => {
   const { logedInUser } = useAuth();
@@ -25,7 +27,19 @@ const AddJob = () => {
       req.trim()
     );
     newJobs.responsibilities = clearResponsibilitiesArray;
-    console.log(newJobs);
+    // console.log(newJobs);
+
+    axios
+      .post("http://localhost:3000/jobs", newJobs)
+      .then((res) => {
+        // console.log(res.data);
+        if (res.data.insertedId) {
+          toast.success("job Added Successfully");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   return (
     <div className="w-11/12 mx-auto">
